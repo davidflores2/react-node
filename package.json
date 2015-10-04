@@ -2,9 +2,12 @@
   "name": "react-node",
   "description": "Test application using react and node",
   "version": "0.0.1",
+  "engines": {
+    "node": "4.1.1"
+  },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:davidflores2/react-node.git"
   },
   "main": "server.js",
   "scripts": {
