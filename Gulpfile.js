@@ -98,14 +98,17 @@ gulp.task('browserify-watch', ['browserify-vendor'], function() {
  | Compile SASS stylesheets.
  |--------------------------------------------------------------------------
  */
-gulp.task('sass', function () {
-  gulp.src('./sass/**/*.scss')
+ gulp.task('styles', function() {
+  return gulp.src('app/stylesheets/main.scss')
+    .pipe(plumber())
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
+    .pipe(autoprefixer())
+    .pipe(gulpif(production, cssmin()))
+    .pipe(gulp.dest('public/css'));
 });
  
-gulp.task('sass:watch', function () {
-  gulp.watch('./sass/**/*.scss', ['sass']);
+gulp.task('watch', function () {
+  gulp.watch('./sass/**/*.scss', ['styles']);
 });
 
 gulp.task('default', ['styles', 'vendor', 'browserify-watch', 'watch']);
